@@ -1,0 +1,42 @@
+- name: fetch pysaml2 from github
+  git:
+    repo=https://github.com/its-dirg/pysaml2
+    dest={{ pysaml2_dir }}
+    version=015fac5eac33cf7577a304158b3546dbc5e4c51d
+    force=yes
+
+- name: Overwrite sp_conf.py
+  template:
+    src=sp_conf.py.j2
+    dest={{ sp_dir }}/sp_conf.py
+
+- name: Overwrite service_conf.py
+  template:
+    src=service_conf.py.j2
+    dest={{ sp_dir }}/service_conf.py
+
+- name: update apt-get
+  apt:
+    update_cache=yes
+
+- name: install pip
+  apt:
+    name=python-pip
+
+- name: install python-dev
+  apt:
+    name=python-dev
+
+- name: install build-essential
+  apt:
+    name=build-essential
+
+- name: install pysaml2 from local project
+  command:
+    pip install -e .
+    chdir={{ pysaml2_dir }}
+
+- name: start SP
+  command:
+    python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf_pyff
+    chdir={{ sp_dir }}
