@@ -2,7 +2,7 @@
   git:
     repo=https://github.com/its-dirg/pysaml2
     dest={{ pysaml2_dir }}
-    version=015fac5eac33cf7577a304158b3546dbc5e4c51d
+    version=d355ec58e46786b05e64cc712ad4f2f3bf3c6f9e
     force=yes
 
 - name: Overwrite sp_conf.py
@@ -31,6 +31,30 @@
   apt:
     name=build-essential
 
+- name: install libffi-dev
+  apt:
+    name=libffi-dev
+
+- name: install xmlsec1
+  apt:
+    name=xmlsec1
+
+- name: install daemon
+  apt:
+    name=daemon
+
+- name: install cryptography
+  pip:
+    name=cryptography
+
+- name: install pycrypto
+  pip:
+    name=pycrypto
+
+- name: install example requirements
+  pip:
+    requirements={{ pysaml2_dir }}/example/requirements.txt
+
 - name: install pysaml2 from local project
   command:
     pip install -e .
@@ -38,5 +62,5 @@
 
 - name: start SP
   command:
-    python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf_pyff
+    python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf
     chdir={{ sp_dir }}

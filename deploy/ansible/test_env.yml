@@ -2,13 +2,14 @@
 
   vars:
     home_dir: /home/vagrant
-    host: "http:localhost"
+    host: "http://localhost"
     pyff_port: "9090"
     pyff_url: "{{ host }}:{{ pyff_port }}"
     sp_port: "9087"
     sp_url: "{{ host }}:{{ sp_port }}"
 
   roles:
-    - {role: sp, sudo: yes }
+    - {role: pyff, sudo: yes}
+    - {role: sp, sudo: yes}
 
 

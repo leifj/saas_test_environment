@@ -1,5 +1,8 @@
 pyff_dir: "{{ home_dir }}/pyff"
-metadata_feed: ['http://130.239.200.133:8089/metadata', 'http://130.239.200.133:8088/metadata',
-  '{{ sp_url }}/metadata']
+metadata_feed: [
+  'http://130.239.200.133:8089/metadata',
+  'http://130.239.200.133:8088/metadata',
+  'http://localhost:9087/metadata'
+  ]
 cert_file: localhost.crt
 key_file: localhost.key
