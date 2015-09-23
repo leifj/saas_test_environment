@@ -61,6 +61,7 @@
     chdir={{ pysaml2_dir }}
 
 - name: start SP
-  command:
-    python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf
+  shell:
+    nohup python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf &
     chdir={{ sp_dir }}
+  poll: 0
