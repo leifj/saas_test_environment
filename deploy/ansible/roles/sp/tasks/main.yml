@@ -39,10 +39,6 @@
   apt:
     name=xmlsec1
 
-- name: install daemon
-  apt:
-    name=daemon
-
 - name: install cryptography
   pip:
     name=cryptography
@@ -59,6 +55,14 @@
   command:
     pip install -e .
     chdir={{ pysaml2_dir }}
+
+- name: generate metadata for the SP
+  shell:
+    make_metadata.py sp_conf.py > {{ pyff_metadata_dir }}/sp.xml
+    chdir={{ sp_dir }}
+
+- name: kill sp
+  script: kill_sp.sh
 
 - name: start SP
   shell:

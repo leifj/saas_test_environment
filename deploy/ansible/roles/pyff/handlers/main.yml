@@ -1,0 +1,5 @@
+- name: stop pyff
+  script: stop_containers.sh
+
+- name: start pyff
+  command: docker run -e DATADIR=/opt/pyff -v {{ pyff_dir }}:/opt/pyff -p 9090:8080 -d leifj/pyff

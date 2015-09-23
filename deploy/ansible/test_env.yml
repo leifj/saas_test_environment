@@ -7,9 +7,12 @@
     pyff_url: "{{ host }}:{{ pyff_port }}"
     sp_port: "9087"
     sp_url: "{{ host }}:{{ sp_port }}"
+    idp_1_port: "9088"
+    idp_2_port: "9089"
 
   roles:
     - {role: pyff, sudo: yes}
     - {role: sp, sudo: yes}
+
 
 

@@ -1,5 +1,6 @@
 - when update:
-  - load: {{ metadata_feed }}
+  - load:
+    - /opt/pyff/metadata
   - break
 - when request:
   - select

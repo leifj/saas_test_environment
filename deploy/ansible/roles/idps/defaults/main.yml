@@ -1,0 +1,2 @@
+pysaml2_dir: "{{ home_dir }}/pysaml2"
+idp_dir: "{{ pysaml2_dir }}/example/idp2"

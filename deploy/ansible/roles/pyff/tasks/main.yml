@@ -4,6 +4,9 @@
 - name: Creates pyff folder
   file: path={{ pyff_dir }} state=directory owner=vagrant group=vagrant mode=0755
 
+- name: Creates metadata folder
+  file: path={{ pyff_metadata_dir }} state=directory owner=vagrant group=vagrant mode=0755
+
 - name: create config.yaml
   template: src=mdx.fd.j2
             dest={{ pyff_dir }}/mdx.fd
