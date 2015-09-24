@@ -13,6 +13,15 @@
 - name: Creates metadata folder
   file: path={{ pyff_metadata_dir }} state=directory owner=vagrant group=vagrant mode=0755
 
+- name: copy IdP 1 metadata
+  copy: src=idp_1.xml dest={{ pyff_metadata_dir }}/idp_1.xml owner=vagrant group=vagrant mode=0755
+
+- name: copy IdP 2 metadata
+  copy: src=idp_2.xml dest={{ pyff_metadata_dir }}/idp_2.xml owner=vagrant group=vagrant mode=0755
+
+- name: copy SP metadata
+  copy: src=sp.xml dest={{ pyff_metadata_dir }}/sp.xml owner=vagrant group=vagrant mode=0755
+
 - name: create config.yaml
   template: src=mdx.fd.j2
             dest={{ pyff_dir }}/mdx.fd

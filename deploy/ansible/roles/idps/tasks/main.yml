@@ -45,11 +45,6 @@
   shell:
     make_metadata.py idp_2_conf.py > {{ pyff_metadata_dir }}/idp_2.xml
     chdir={{ idp_dir }}
-  notify:
-    - stop pyff
-    - start pyff
-    - kill sp
-    - start SP
 
 - name: kill idps
   script: kill_idps.sh
