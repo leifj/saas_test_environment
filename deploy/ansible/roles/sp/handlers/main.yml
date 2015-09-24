@@ -1,0 +1,8 @@
+- name: kill sp
+  script: kill_sp.sh
+
+- name: start SP
+  shell:
+    nohup python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf &
+    chdir={{ sp_dir }}
+  poll: 0

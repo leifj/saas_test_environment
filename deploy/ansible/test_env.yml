@@ -13,6 +13,6 @@
   roles:
     - {role: pyff, sudo: yes}
     - {role: sp, sudo: yes}
-
+    - {role: idps, sudo: yes}
 
 

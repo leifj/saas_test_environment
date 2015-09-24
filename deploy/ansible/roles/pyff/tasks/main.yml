@@ -4,15 +4,18 @@
 - name: Creates pyff folder
   file: path={{ pyff_dir }} state=directory owner=vagrant group=vagrant mode=0755
 
+- name: copy self-signed SSL cert
+  copy: src=localhost.crt dest={{ pyff_dir }}/{{ cert_file }} owner=vagrant group=vagrant mode=0755
+
+- name: copy self-signed SSL key
+  copy: src=localhost.key dest={{ pyff_dir }}/{{ key_file }} owner=vagrant group=vagrant mode=0755
+
 - name: Creates metadata folder
   file: path={{ pyff_metadata_dir }} state=directory owner=vagrant group=vagrant mode=0755
 
 - name: create config.yaml
   template: src=mdx.fd.j2
             dest={{ pyff_dir }}/mdx.fd
-
-- name: create self-signed SSL cert
-  command: openssl req -new -nodes -x509 -subj "/C=US/ST=Oregon/L=Portland/O=IT/CN=asd.se" -days 3650 -keyout {{ pyff_dir }}/{{ key_file }} -out {{ pyff_dir }}/{{ cert_file }} -extensions v3_ca creates={{ pyff_dir }}/{{ cert_file }}
 
 - name: stop containers
   script: stop_containers.sh

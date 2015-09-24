@@ -48,6 +48,8 @@
   notify:
     - stop pyff
     - start pyff
+    - kill sp
+    - start SP
 
 - name: kill idps
   script: kill_idps.sh
