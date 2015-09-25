@@ -5,6 +5,13 @@
     version=d355ec58e46786b05e64cc712ad4f2f3bf3c6f9e
     force=yes
 
+- name: install pip
+  apt:
+    name=python-pip
+
+- name: copy saas_saml2_backend metadata
+  copy: src=saas_saml2_frontend.xml dest={{ metadata_dir }}/saas_saml2_frontend.xml owner=vagrant group=vagrant mode=0755
+
 - name: Overwrite sp_conf.py
   template:
     src=sp_conf.py.j2
@@ -15,30 +22,6 @@
     src=service_conf.py.j2
     dest={{ sp_dir }}/service_conf.py
 
-- name: update apt-get
-  apt:
-    update_cache=yes
-
-- name: install pip
-  apt:
-    name=python-pip
-
-- name: install python-dev
-  apt:
-    name=python-dev
-
-- name: install build-essential
-  apt:
-    name=build-essential
-
-- name: install libffi-dev
-  apt:
-    name=libffi-dev
-
-- name: install xmlsec1
-  apt:
-    name=xmlsec1
-
 - name: install cryptography
   pip:
     name=cryptography
@@ -46,6 +29,14 @@
 - name: install pycrypto
   pip:
     name=pycrypto
+
+- name: install libyaml-dev
+  apt:
+    name=libyaml-dev
+
+- name: install PyYAML
+  pip:
+    name=PyYAML
 
 - name: install example requirements
   pip:
@@ -58,7 +49,7 @@
 
 - name: generate metadata for the SP
   shell:
-    make_metadata.py sp_conf.py > {{ pyff_metadata_dir }}/sp.xml
+    make_metadata.py sp_conf.py > {{ sp_metadata }}
     chdir={{ sp_dir }}
 
 - name: kill sp
@@ -66,6 +57,6 @@
 
 - name: start SP
   shell:
-    nohup python sp.py -D {{ pyff_url }}/role/idp.ds sp_conf &
+    nohup python sp.py sp_conf &
     chdir={{ sp_dir }}
   poll: 0

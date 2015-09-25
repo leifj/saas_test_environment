@@ -19,8 +19,8 @@
 - name: copy IdP 2 metadata
   copy: src=idp_2.xml dest={{ pyff_metadata_dir }}/idp_2.xml owner=vagrant group=vagrant mode=0755
 
-- name: copy SP metadata
-  copy: src=sp.xml dest={{ pyff_metadata_dir }}/sp.xml owner=vagrant group=vagrant mode=0755
+- name: copy saas_saml2_backend metadata
+  copy: src=saas_saml2_backend.xml dest={{ pyff_metadata_dir }}/saas_saml2_backend.xml owner=vagrant group=vagrant mode=0755
 
 - name: create config.yaml
   template: src=mdx.fd.j2
