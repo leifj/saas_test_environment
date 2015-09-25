@@ -1,2 +1,1 @@
-pysaml2_dir: "{{ home_dir }}/pysaml2"
 sp_dir: "{{ pysaml2_dir }}/example/sp-wsgi"

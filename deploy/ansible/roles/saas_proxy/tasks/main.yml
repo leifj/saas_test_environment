@@ -77,7 +77,13 @@
   command:
     pip3 install -r {{ saas_dir }}/requirements.txt
 
-- name: install pysaml2 from local project
+- name: install saas from local project
   command:
     pip3 install -e .
     chdir={{ saas_dir }}
+
+- name: start SaaS proxy
+  shell:
+    nohup python3 proxy_server.py proxy_conf.yaml &
+    chdir={{ saas_dir }}/example
+  poll: 0

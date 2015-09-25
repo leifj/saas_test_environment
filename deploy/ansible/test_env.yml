@@ -16,6 +16,7 @@
   roles:
     - {role: pyff, sudo: yes}
     - {role: saas_proxy, sudo: yes}
-
+    - {role: sp, sudo: yes}
+    - {role: idps, sudo: yes}
 
 
