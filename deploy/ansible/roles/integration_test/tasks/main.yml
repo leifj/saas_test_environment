@@ -67,6 +67,15 @@
     group=vagrant
     mode=0755
 
+- name: Change premissions for file ghostdriver.log
+  file: path={{ home_dir }}/ghostdriver.log state=touch owner=vagrant group=vagrant mode=0777
+
+- name: Change premissions for dirs in .cache
+  command: sudo find /home/vagrant/.cache/ -type d -exec chmod 755 {} ";"
+
+- name: Change premissions for files in .cache
+  command: sudo find /home/vagrant/.cache/ -type f -exec chmod 755 {} ";"
+
 - name: Run tests
   command:
     py.test test_integration.py

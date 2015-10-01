@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 __author__ = 'danielevertsson'
 
@@ -14,7 +15,6 @@ class TestSaaS:
         driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs",
                                      service_args=['--ignore-ssl-errors=true'])
         driver.get("http://127.0.0.1:9087")
-        print (driver.find_element_by_id("to_list"))
         driver.find_element_by_id("to_list").click()
 
         dropdown = driver.find_element_by_id("thelist")
@@ -29,5 +29,12 @@ class TestSaaS:
         driver.find_element_by_name("password").clear()
         driver.find_element_by_name("password").send_keys("dianakra")
         driver.find_element_by_name("form.submitted").click()
-        display_name_cell = driver.find_elements_by_xpath('/html/body/table/tbody/tr[1]/td')
-        assert display_name_cell[0].text == "P. Roland Hedberg"
+        # driver.get("http://127.0.0.1:9087")
+
+        table_row = driver.find_elements(By.TAG_NAME, "tr")
+        found_match = False
+        for row in table_row:
+            cell = row.find_elements(By.TAG_NAME, "td")
+            if cell[0].text == "P. Roland Hedberg":
+                found_match = True
+        assert found_match
