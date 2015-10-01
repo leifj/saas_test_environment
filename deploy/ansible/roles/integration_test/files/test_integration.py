@@ -4,9 +4,16 @@ __author__ = 'danielevertsson'
 
 
 class TestSaaS:
+    # def test_phantom_js(self):
+    #     driver = webdriver.PhantomJS()
+    #     driver.get("https://www.google.se/")
+    #     image = driver.find_element_by_id("hplogo")
+    #     assert image.text == "Sverige"
+
     def test_login_to_idp_1(self):
-        driver = webdriver.Firefox()
+        driver = webdriver.PhantomJS()
         driver.get("http://127.0.0.1:9087")
+        print (driver.find_element_by_id("to_list"))
         driver.find_element_by_id("to_list").click()
 
         dropdown = driver.find_element_by_id("thelist")

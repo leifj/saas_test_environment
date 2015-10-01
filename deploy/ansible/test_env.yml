@@ -18,5 +18,6 @@
     - {role: saas_proxy, sudo: yes}
     - {role: sp, sudo: yes}
     - {role: idps, sudo: yes}
+    - {role: integration_test, sudo: yes}
 
 

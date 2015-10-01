@@ -1,4 +1,4 @@
-- name: fetch pysaml2 from github
+- name: fetch SATOSA from github
   git:
     repo=https://github.com/its-dirg/SATOSA
     dest={{ saas_dir }}
