@@ -11,7 +11,8 @@ class TestSaaS:
     #     assert image.text == "Sverige"
 
     def test_login_to_idp_1(self):
-        driver = webdriver.PhantomJS()
+        driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs",
+                                     service_args=['--ignore-ssl-errors=true'])
         driver.get("http://127.0.0.1:9087")
         print (driver.find_element_by_id("to_list"))
         driver.find_element_by_id("to_list").click()
