@@ -75,8 +75,3 @@
 
 - name: Change premissions for files in .cache
   command: sudo find /home/vagrant/.cache/ -type f -exec chmod 755 {} ";"
-
-- name: Run tests
-  command:
-    py.test test_integration.py
-    chdir={{ home_dir }}

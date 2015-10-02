@@ -5,11 +5,11 @@ __author__ = 'danielevertsson'
 
 
 class TestSaaS:
-    # def test_phantom_js(self):
-    #     driver = webdriver.PhantomJS()
-    #     driver.get("https://www.google.se/")
-    #     image = driver.find_element_by_id("hplogo")
-    #     assert image.text == "Sverige"
+    def test_phantom_js(self):
+        driver = webdriver.PhantomJS()
+        driver.get("https://www.google.se/")
+        image = driver.find_element_by_id("hplogo")
+        assert image.text == "Sverige"
 
     def test_login_to_idp_1(self):
         driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs",
