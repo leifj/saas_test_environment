@@ -9,19 +9,9 @@ from saml2.extension.idpdisc import BINDING_DISCO
 import os.path
 from satosa.backends.saml2 import SamlBackend
 
-# try:
-#     from saml2.sigver import get_xmlsec_binary
-# except ImportError:
-#     get_xmlsec_binary = None
 from satosa.plugin_base.endpoint import BackendModulePlugin
 
 xmlsec_path = '/usr/bin/xmlsec1'
-
-
-def full_path(local_file):
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    return os.path.join(basedir, local_file)
-
 
 PROVIDER = "Saml2"
 MODULE = SamlBackend
@@ -52,8 +42,8 @@ class Saml2BackendModulePlugin(BackendModulePlugin):
                 }
             },
             "debug": 1,
-            "key_file": full_path("{{pyff_dir}}/localhost.key"),
-            "cert_file": full_path("{{pyff_dir}}/localhost.crt"),
+            "key_file": "{{ backend_key }}",
+            "cert_file": "{{ backend_cert }}",
             "metadata": {
                 "remote": [{"url": "http://localhost:9090/role/idp.xml", "cert": None}],
             },
@@ -88,6 +78,6 @@ class Saml2BackendModulePlugin(BackendModulePlugin):
                   "encryption_key": "INJxz3Seglf3",
                   "disco_srv": "http://localhost:9090/role/idp.ds",
                   "publish_metadata": "%s/metadata" % module_base
-                 }
+                  }
 
         super(Saml2BackendModulePlugin, self).__init__(MODULE, PROVIDER, config)

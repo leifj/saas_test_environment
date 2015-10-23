@@ -15,6 +15,18 @@
     idp_2_port: "9089"
     saas_port: "9091"
     sp_metadata: "{{ home_dir }}/pysaml2/example/sp-wsgi/sp.xml"
+    server_cert: /etc/localhost.pem
+    server_key: /etc/localhost.key
+    frontend_cert: /etc/localhost.pem
+    frontend_key: /etc/localhost.key
+    backend_cert: /etc/localhost.pem
+    backend_key: /etc/localhost.key
+
+  pre_tasks:
+    - name: copy localhost cert
+      copy: src=localhost.crt dest=/etc/localhost.crt owner=vagrant group=vagrant mode=0755
+    - name: copy localhost private key
+      copy: src=localhost.key dest=/etc/localhost.key owner=vagrant group=vagrant mode=0755
 
   roles:
     #- {role: pyff, sudo: yes}
