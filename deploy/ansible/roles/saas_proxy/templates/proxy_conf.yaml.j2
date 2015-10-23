@@ -11,8 +11,8 @@ FRONTEND_MODULES:
   - "saml2_frontend"
 
 #--- Server Config ---#
-SERVER_CERT: '{{ home_dir }}/pyff/localhost.crt'
-SERVER_KEY: '{{ home_dir }}/pyff/localhost.key'
+SERVER_CERT: '{{ server_cert }}'
+SERVER_KEY: '{{ server_key }}'
 CERT_CHAIN: Null
 STATIC_DIR: '/static'
 LOG_FILE: 'server.log'
