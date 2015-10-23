@@ -1,0 +1,14 @@
+- hosts: all
+  vars:
+    home_dir: /home/vagrant
+    metadata_dir: "{{ home_dir }}/metadata"
+    saas_port: 9091
+    server_cert: /tmp/localhost.pem
+    server_key: /tmp/localhost.key
+    backend_cert: /tmp/localhost.pem
+    backend_key: /tmp/localhost.key
+    frontend_cert: /tmp/localhost.pem
+    frontend_key: /tmp/localhost.key
+
+  roles:
+    - saas_proxy
