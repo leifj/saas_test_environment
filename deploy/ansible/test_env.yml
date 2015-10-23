@@ -2,6 +2,9 @@
 
   vars:
     home_dir: "/home/vagrant"
+    pysaml2_dir: "{{ home_dir }}/pysaml2"
+    pyff_dir: "{{ home_dir }}/pyff"
+    pyff_metadata_dir: "{{ pyff_dir }}/metadata"
     metadata_dir: "{{ home_dir }}/metadata"
     host: "http://localhost"
     pyff_port: "9090"
@@ -14,10 +17,10 @@
     sp_metadata: "{{ home_dir }}/pysaml2/example/sp-wsgi/sp.xml"
 
   roles:
-    - {role: pyff, sudo: yes}
+    #- {role: pyff, sudo: yes}
     - {role: saas_proxy, sudo: yes}
-    - {role: sp, sudo: yes}
-    - {role: idps, sudo: yes}
-    - {role: integration_test, sudo: yes}
+    #- {role: sp, sudo: yes}
+    #- {role: idps, sudo: yes}
+    #- {role: integration_test, sudo: yes}
 
 

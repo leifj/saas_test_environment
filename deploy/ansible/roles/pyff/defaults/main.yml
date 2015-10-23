@@ -1,4 +1,2 @@
-pyff_dir: "{{ home_dir }}/pyff"
-pyff_metadata_dir: "{{ pyff_dir }}/metadata"
 cert_file: localhost.crt
 key_file: localhost.key
