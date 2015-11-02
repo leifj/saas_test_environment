@@ -11,6 +11,11 @@ from saml2.saml import NAMEID_FORMAT_PERSISTENT
 
 __author__ = 'mathiashedstrom'
 
+
+def full_path(local_file):
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(basedir, local_file)
+
 xmlsec_path = '/usr/bin/xmlsec1'
 
 MODULE = SamlFrontend
@@ -54,8 +59,8 @@ class Saml2FrontendModulePlugin(FrontendModulePlugin):
                 },
             },
             "debug": 1,
-            "key_file": "{{ frontend_key }}",
-            "cert_file": "{{ frontend_cert }}",
+            "key_file": full_path("{{pyff_dir}}/localhost.key"),
+            "cert_file": full_path("{{pyff_dir}}/localhost.crt"),
             "metadata": {
                 "local": ["{{ metadata_dir }}/sp.xml"],
             },
