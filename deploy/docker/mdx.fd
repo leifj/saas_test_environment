@@ -1,0 +1,22 @@
+- when update:
+    - load:
+       - idp.xml
+       - Saml2_backend_metadata.xml
+    - break
+- when request:
+    - select
+    - pipe:
+        - when accept application/xml:
+             - xslt:
+                 stylesheet: tidy.xsl
+             - first
+             - finalize:
+                cacheDuration: PT5H
+                validUntil: P10D
+             - emit application/xml
+             - break
+        - when accept application/json:
+             - xslt:
+                 stylesheet: discojson.xsl
+             - emit application/json
+             - break
